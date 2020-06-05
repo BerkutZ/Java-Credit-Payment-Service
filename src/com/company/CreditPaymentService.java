@@ -1,23 +1,25 @@
 package com.company;
-
-import java.util.Scanner;
 import java.math.BigDecimal;
-
 
 public class CreditPaymentService {
 
-    public int CreditPaymentRatio(double PeriodOfUse, double LoanRate, double LoanAmount) {
-        Scanner num = new Scanner(System.in);
-        System.out.print("Input your period of use of borrowed funds in months ");
-        double PeriodOfUse = num.nextDouble();
-        System.out.print("Input your loan rate ");
-        double LoanRate = num.nextDouble();
-        System.out.print("Input your loan amount ");
-        double LoanAmount = num.nextDouble();
-        double C = LoanRate / 12;
-        double AnnuityRatio = C * (Math.pow((1 + C), PeriodOfUse)) / (Math.pow((1 + C), PeriodOfUse) - 1);
-        int result_of_CreditPaymentRatio = (int) Math.round(AnnuityRatio);
-        return result_of_CreditPaymentRatio;
+    public double creditPaymentRatio(double periodOfUse, double loanRate) {
+        double C = loanRate / 12;
+        double annuityRatio = C * (Math.pow((1 + C), periodOfUse)) / (Math.pow((1 + C), periodOfUse) - 1);
+//        int resultOfCreditPaymentRatio = (int) Math.round(annuityRatio);
+        return annuityRatio; //resultOfCreditPaymentRatio;
+    }
+
+    public double creditPaymentMounth(double creditPaymentRatio, double loanAmount) { ;
+        double mounthPayout = creditPaymentRatio * loanAmount;
+//        int resultOfCreditPaymentMounth = (int) Math.round(mounthPayout);
+        return mounthPayout;
+    }
+
+    public double creditPaymentTotal(double creditPaymentMounth, double periodOfUse) {
+        double totalPayout = creditPaymentMounth * periodOfUse;
+//        int resultOfCreditPaymentTotal = (int) Math.round(totalPayout);
+        return totalPayout;
     }
 
 }
